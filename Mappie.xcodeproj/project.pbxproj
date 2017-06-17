@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D53730481EF4B84A00698B9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53730471EF4B84A00698B9E /* CoreLocation.framework */; };
 		D53FA3011EEF92AF0068AA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53FA3001EEF92AF0068AA89 /* AppDelegate.swift */; };
 		D53FA3031EEF92AF0068AA89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53FA3021EEF92AF0068AA89 /* ViewController.swift */; };
 		D53FA3061EEF92AF0068AA89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D53FA3041EEF92AF0068AA89 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D53730471EF4B84A00698B9E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D53FA2FD1EEF92AF0068AA89 /* Mappie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mappie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53FA3001EEF92AF0068AA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D53FA3021EEF92AF0068AA89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +31,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53730481EF4B84A00698B9E /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D53730461EF4B84900698B9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D53730471EF4B84A00698B9E /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D53FA2F41EEF92AF0068AA89 = {
 			isa = PBXGroup;
 			children = (
 				D53FA2FF1EEF92AF0068AA89 /* Mappie */,
 				D53FA2FE1EEF92AF0068AA89 /* Products */,
+				D53730461EF4B84900698B9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +316,7 @@
 				D53FA3111EEF92AF0068AA89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

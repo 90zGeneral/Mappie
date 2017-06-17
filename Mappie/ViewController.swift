@@ -8,16 +8,20 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    //Outlet
     @IBOutlet weak var mapView: MKMapView!
     
+    //To represent the new annotations in the order they were created
     var number = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Delegate
         mapView.delegate = self
         
         //Create a specific location for the map
