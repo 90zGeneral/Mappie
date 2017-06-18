@@ -18,11 +18,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //To represent the new annotations in the order they were created
     var number = 0.0
     
+    //Location Manager
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Delegate
+        //Delegates
         mapView.delegate = self
+        locationManager.delegate = self
+        
+        //Location configuration
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         //Create a specific location for the map
         let lat: CLLocationDegrees = 43.095181
@@ -47,6 +56,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.lpgrAction(_:)))
         longPressGestureRecognizer.minimumPressDuration = 2
         mapView.addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    //Delegate method to update location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        print(locations)
+        
+        //Grab the user's exact location
+        let userLocation: CLLocation = locations[0]
+        let userLat = userLocation.coordinate.latitude
+        let userLong = userLocation.coordinate.longitude
+        
+        //Setup the user's location to display on the map
+        let userLatDelta: CLLocationDegrees = 0.05
+        let userLongDelta: CLLocationDegrees = 0.05
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: userLat, longitude: userLong)
+        let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: userLatDelta, longitudeDelta: userLongDelta)
+        let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        //Display the user's location on the map
+        mapView.setRegion(region, animated: false)
     }
     
     //Create a gesture recognizer
