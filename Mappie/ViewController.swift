@@ -61,7 +61,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //Delegate method to update location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print(locations)
+//        print(locations)
         
         //Grab the user's exact location
         let userLocation: CLLocation = locations[0]
@@ -74,6 +74,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: userLat, longitude: userLong)
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: userLatDelta, longitudeDelta: userLongDelta)
         let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        //Convert the user's location into an address containing street number and name, city or state, zipcode, and country
+        CLGeocoder().reverseGeocodeLocation(userLocation) { (placemarks, error) in
+            if error != nil {
+                print(error.debugDescription)
+                
+            }else {
+                let p = placemarks?[0]
+                
+                if let address = p {
+                    
+                    //Street number and name
+                    var subThoroughfare = ""
+                    
+                    if (address.subThoroughfare != nil) {
+                        subThoroughfare = address.subThoroughfare!
+                    }
+                    
+                    print("\(subThoroughfare) \(String(describing: address.thoroughfare!)) \n \(String(describing: address.administrativeArea!)) \n \(String(describing: address.postalCode!)) \n \(String(describing: address.country!))")
+                }
+            }
+        }
         
         //Display the user's location on the map
         mapView.setRegion(region, animated: false)
